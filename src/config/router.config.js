@@ -6,6 +6,10 @@ const RouteView = {
   name: 'RouteView',
   render: (h) => h('router-view')
 }
+const PageView = {
+  name: 'PageView',
+  render: (h) => h('router-view')
+}
 
 export const asyncRouterMap = [
 
@@ -31,11 +35,11 @@ export const asyncRouterMap = [
             meta: { title: 'menu.dashboard.analysis', keepAlive: false, permission: [ 'dashboard' ] }
           },
           // 外部链接
-          {
-            path: 'https://www.baidu.com/',
-            name: 'Monitor',
-            meta: { title: 'menu.dashboard.monitor', target: '_blank' }
-          },
+          // {
+          //   path: 'https://www.baidu.com/',
+          //   name: 'Monitor',
+          //   meta: { title: 'menu.dashboard.monitor', target: '_blank' }
+          // },
           {
             path: '/dashboard/workplace',
             name: 'Workplace',
@@ -130,6 +134,29 @@ export const asyncRouterMap = [
         ]
       },
 
+      {
+        path: '/models',
+        name: 'flwoable',
+        component: RouteView,
+        redirect: '/models/process-model',
+        meta: { title: '模型管理', icon: 'user', keepAlive: true, permission: ['user'] },
+        children: [
+          {
+            path: '/models/process-model/:pageNo([1-9]\\d*)?',
+            name: 'ProcessModelList',
+            hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+            component: () => import('@/views/flowable/ProcessModelList'),
+            meta: { title: '流程模型', keepAlive: true, permission: [ 'table' ] }
+          },
+          {
+            path: '/models/form-model/:pageNo([1-9]\\d*)?',
+            name: 'FormModelList',
+            hideChildrenInMenu: true, // 强制显示 MenuItem 而不是 SubMenu
+            component: () => import('@/views/flowable/FormModelList'),
+            meta: { title: '表单模型', keepAlive: true, permission: [ 'table' ] }
+          }
+        ]
+      },
       // profile
       {
         path: '/profile',
@@ -260,10 +287,10 @@ export const asyncRouterMap = [
             ]
           }
         ]
-      }
+      },
 
       // other
-      /*
+      // /*
       {
         path: '/other',
         name: 'otherPage',
@@ -323,7 +350,7 @@ export const asyncRouterMap = [
           }
         ]
       }
-      */
+      // */
     ]
   },
   {
