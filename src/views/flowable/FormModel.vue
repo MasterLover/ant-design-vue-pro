@@ -184,7 +184,7 @@ const statusMap = {
 }
 
 export default {
-  name: 'FormModelList',
+  name: 'FormModel',
   components: {
     STable,
     Ellipsis,

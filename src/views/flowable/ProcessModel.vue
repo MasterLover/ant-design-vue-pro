@@ -184,7 +184,7 @@ const statusMap = {
 }
 
 export default {
-  name: 'ProcessModelList',
+  name: 'ProcessModel',
   components: {
     STable,
     Ellipsis,
